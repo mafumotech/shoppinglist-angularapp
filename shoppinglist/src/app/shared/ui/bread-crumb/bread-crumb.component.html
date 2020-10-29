@@ -1,0 +1,26 @@
+
+        <div class="row mb-2">
+
+            <div class="col-sm-6">
+                <h1 class="m-0"> {{ breadTitle }} <small>preview</small></h1>
+            </div><!-- /.col -->
+            
+            <div class="col-sm-6">
+
+                <ol class="breadcrumb float-sm-right">
+                
+                    <li class="breadcrumb-item"><i class="fa fa-dashboard"></i><a [routerLink]="['/']">dashboard</a></li>
+
+                    <li class="breadcrumb-item" *ngFor="let route of routeList" [ngClass]="{'active': isTheLastRoute(route)}">
+
+                        <a *ngIf="!isTheLastRoute(route)" [routerLink]="route.url">{{route.text}}</a>
+
+                        <span *ngIf="isTheLastRoute(route)">{{route.text}}</span>    
+
+                    </li>
+
+                </ol>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+  
