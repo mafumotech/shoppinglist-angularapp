@@ -1,0 +1,20 @@
+<div class="table-responsive">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th *ngFor="let th of thtf">{{th}}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <ng-content select=".data"></ng-content>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th *ngFor="let tf of thtf">{{tf}}</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

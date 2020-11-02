@@ -1,1 +1,29 @@
-<p>products works!</p>
+
+<ng-card [cardTitle]="'Products'" [cardIcon]="'fas fa-shopping-cart'" [cardStyles]="'card-primary card-outline'">
+
+    <ng-container class="card-header-options">
+       
+        <ng-button (click)="addProduct()" [button]="handleButton()"></ng-button>
+
+    </ng-container>
+
+    <ng-container class="card-content">
+        
+        <ng-table [thtf]="tableProprieties()">
+
+            <ng-container class="data">
+               <tr *ngFor="let prod of tableData()">
+                <td>{{prod.id}}</td>
+                <td><strong>{{prod.name}}</strong></td>
+                <td class="text-center">
+                    <ng-button (click)="alertMethod()" [button]="handleButton('edit')"></ng-button>&nbsp;
+                    <ng-button (click)="alertMethod()" [button]="handleButton('delete')"></ng-button>&nbsp;
+                </td>
+               </tr>
+            </ng-container>
+
+        </ng-table>
+
+    </ng-container>
+
+</ng-card>

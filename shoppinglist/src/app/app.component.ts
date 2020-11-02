@@ -1,4 +1,4 @@
-import { BreadCrumb } from './shared/ui/bread-crumb/bread-crumb.model';
+import { BreadCrumb } from './shared/components/bread-crumb/models/bread-crumb.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   
   title = 'shoppinglist';
+
   actualYear:number=new Date().getFullYear();
 
   constructor(){}
 
   ngOnInit(): void {
-    this.getBreadTitle()
-    this.getPageLinks()
+    this.getBreadTitle();
+    this.getPageLinks();
   }
 
 
@@ -25,6 +26,10 @@ export class AppComponent implements OnInit {
       return 'Listas de Compras'
     }else if(this.currentUrl()=='products'){
       return 'Lista de Produtos'
+    }else if(this.currentUrl()=='products/new'){
+      return 'Cadastro dos Dados do Produtos'
+    }else if(this.currentUrl()=='lists/new'){
+      return 'Cadastro dos Dados da Lista'
     }else{
       return 'Dashboard'
     }
@@ -34,9 +39,13 @@ export class AppComponent implements OnInit {
   getPageLinks():Array<BreadCrumb>{
 
     if(this.currentUrl()=='lists'){
-      return [{text:'produtos',url:'/products'},{text:'listas'}]
+      return [{text:'listas'}]
     }else if(this.currentUrl()=='products'){
-      return [{text:'listas',url:'/lists'},{text:'produtos'}]
+      return [{text:'Productos'}]
+    }else if(this.currentUrl()=='products/new'){
+      return [{text:'produtos',url:'/products'},{text:'Novo Produto'}]
+    }else if(this.currentUrl()=='lists/new'){
+      return [{text:'listas',url:'/lists'},{text:'Nova Lista'}]
     }
 
   }

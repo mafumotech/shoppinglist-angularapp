@@ -1,1 +1,60 @@
-<p>lists works!</p>
+<ng-card [cardTitle]="'Listas'" [cardIcon]="'fas fa-list'" [cardStyles]="'card-primary card-outline'">
+
+    <ng-container class="card-header-options">
+
+        <ng-button (click)="alertMethod()" [button]="handleButton()"></ng-button>
+
+    </ng-container>
+
+    <ng-container class="card-content">
+
+        <ng-table [thtf]="tableProprieties()">
+
+            <ng-container class="data">
+                <tr *ngFor="let list of tableData()">
+                    <td>{{list.id}}</td>
+                    <td><strong>{{list.description}}</strong></td>
+                    <td>{{list.balance | currency:'MZN':'symbol'}}</td>
+                    <td class="text-center"><span class=" badge badge-success">{{1}}</span></td>
+                    <td> 
+                        <span class="text-success" *ngIf="list.status==0">Completa</span>
+                        <span class="text-danger" *ngIf="list.status==1">Incompleta</span>
+                    </td>
+                    <td>{{list.date | date}}</td>
+                    <td class="text-center">
+                        <ng-button (click)="alertMethod()" [button]="handleButton('add')"></ng-button>&nbsp;
+                        <ng-button (click)="alertMethod()" [button]="handleButton('view')"></ng-button>&nbsp;
+                        <ng-button (click)="alertMethod()" [button]="handleButton('end')"></ng-button>&nbsp;
+                        <ng-button  data-toggle="modal"      data-target="#modal-default"  [button]="handleButton('edit')"></ng-button>&nbsp;
+                        <ng-button (click)="alertMethod()" [button]="handleButton('delete')"></ng-button>&nbsp;
+                    </td>
+                </tr>
+            </ng-container>
+
+        </ng-table>
+
+    </ng-container>
+</ng-card>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Default Modal</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->

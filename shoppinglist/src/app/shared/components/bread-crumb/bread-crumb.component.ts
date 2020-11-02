@@ -1,10 +1,9 @@
-import { BreadCrumb } from './bread-crumb.model';
+import { BreadCrumb } from './models/bread-crumb.model';
 import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'ng-bread-crumb',
-  templateUrl: './bread-crumb.component.html',
-  styleUrls: ['./bread-crumb.component.css']
+  templateUrl: './bread-crumb.component.html'
 })
 export class BreadCrumbComponent{
 

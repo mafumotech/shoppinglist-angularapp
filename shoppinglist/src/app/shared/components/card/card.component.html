@@ -1,0 +1,24 @@
+<div class="card {{ cardStyles }}">
+
+    <div class="card-header">
+
+      <h3 class="card-title mt-2">
+
+        <i [class]="cardIcon"></i>
+        
+        {{cardTitle}}
+
+      </h3>
+
+      <div class="card-tools">
+        <ng-content select=".card-header-options"></ng-content>
+      </div>
+
+    </div>
+
+    <div class="card-body">
+
+      <ng-content select=".card-content"></ng-content>
+
+    </div>
+    <!-- /.card -->

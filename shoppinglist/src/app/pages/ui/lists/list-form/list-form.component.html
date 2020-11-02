@@ -1,0 +1,27 @@
+<form [formGroup]="objectForm" (ngSubmit)="submitForm()">
+
+
+    <ng-card [cardTitle]="'Informações da Lista'" [cardIcon]="'fas fa-list'" [cardStyles]="'card-primary card-outline'">
+
+        <ng-container class="card-header-options">
+           
+            <ng-button (click)="goBack()" [button]="handleButton()"></ng-button>
+    
+        </ng-container>
+    
+        <ng-container class="card-content">
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                  <input type="text" placeholder="Descrição" class="form-control" id="name" formControlName="description">
+                </div>
+            </div>
+    
+            <ng-button [button]="handleButton('save')"></ng-button>
+            
+        </ng-container>
+    
+    </ng-card>
+
+  </form>
+  

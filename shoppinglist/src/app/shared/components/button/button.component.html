@@ -1,0 +1,18 @@
+<button  
+    *ngIf="!!button" 
+    [disabled]="button.isDisabled" 
+    [type]="button.type" 
+    class="btn {{button.color}} {{button.size}}"
+    [ngClass]="{'btn-block':button.isBlock}"
+>
+    
+    <i *ngIf="!button.isLoading" [class]="button.icon"></i>&nbsp;
+  
+    <span *ngIf="!button.isLoading">{{button?.name?.toUpperCase()}}</span>
+
+    <span *ngIf="button.isLoading">
+        <i class="fas fa-1x fa-sync-alt fa-spin fa-spin"></i>
+        PROCESSANDO...
+    </span>
+
+</button>
