@@ -12,13 +12,16 @@
         <ng-table [thtf]="tableProprieties()">
 
             <ng-container class="data">
-               <tr *ngFor="let prod of tableData()">
+               <tr *ngFor="let prod of products">
                 <td>{{prod.id}}</td>
                 <td><strong>{{prod.name}}</strong></td>
                 <td class="text-center">
                     <ng-button (click)="alertMethod()" [button]="handleButton('edit')"></ng-button>&nbsp;
-                    <ng-button (click)="alertMethod()" [button]="handleButton('delete')"></ng-button>&nbsp;
+                    <ng-button (click)="removeProd(prod.id)" [button]="handleButton('delete')"></ng-button>&nbsp;
                 </td>
+               </tr>
+               <tr *ngIf="!(!!products) || products.length==0" class="text-center">
+                   <td [colSpan]="tableProprieties().length">dados não encontrados!</td>
                </tr>
             </ng-container>
 

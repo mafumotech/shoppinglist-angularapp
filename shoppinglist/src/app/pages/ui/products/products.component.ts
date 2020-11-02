@@ -11,12 +11,19 @@ import { Button } from 'src/app/shared/components/button/models/button.model';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent extends BaseListComponent<Product> implements OnInit {
+  products: Product[]=[];
  
   constructor(private prodServ:ProductService,private router:Router) { 
     super(prodServ)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.prodServ.products.subscribe(products=>this.products=products)
+  }
+
+  removeProd(idproduct:number){
+    this.prodServ.removeProduct(idproduct)
+  }
 
   tableProprieties(): string[] {
     return [

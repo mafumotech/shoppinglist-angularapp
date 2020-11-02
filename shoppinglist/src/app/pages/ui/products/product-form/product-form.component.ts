@@ -29,6 +29,11 @@ export class ProductFormComponent extends BaseFormComponent<Product> {
       this.router.navigate(['/products'])
   }
 
+  saveProduct(){
+    this.prodServ.addProduct(this.objectForm.value)
+    this.isLoading=false
+  }
+
   handleButton(type?:string):Button{
 
       if(type==='save'){
