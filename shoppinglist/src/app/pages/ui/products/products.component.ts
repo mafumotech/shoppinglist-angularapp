@@ -21,8 +21,12 @@ export class ProductsComponent extends BaseListComponent<Product> implements OnI
     this.prodServ.products.subscribe(products=>this.products=products)
   }
 
-  removeProd(idproduct:number){
-    this.prodServ.removeProduct(idproduct)
+  deleteObject(product:Product){
+    confirm('Deseja realmente remover este produto?')?this.prodServ.removeProduct(product.id):''
+  }
+
+  editProduct(product:Product){
+    this.router.navigate(['/products/edit/',product.id])
   }
 
   tableProprieties(): string[] {

@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { BaseModel } from '../models/base-model.model';
 
 export abstract class BaseService<T extends BaseModel> {
-    
+       
     protected http: HttpClient;
     
     constructor(

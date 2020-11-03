@@ -5,6 +5,7 @@ import { Product } from '../models/product.model';
 
 @Injectable({providedIn: 'root'})
 export class ProductService extends BaseService<Product> {
+   
     private _products:BehaviorSubject<Array<Product>>
     private _productsArr:Array<Product>
     
@@ -22,10 +23,14 @@ export class ProductService extends BaseService<Product> {
         this._products.next(products)
     }
 
+    getProdById(id:number) {
+       return this._productsArr.find(prod=>prod.id==id)
+    }
+
     addProduct(product:Product){
         
-        if(!!this._productsArr.find(prod=>prod.name==product.name)){ 
-            console.log('Esse produto já existe na lista') 
+        if(!!this._productsArr.find(prod=>prod.name.toLowerCase()===product.name.toLowerCase())){ 
+            alert('Esse produto já existe!') 
         }else{
             let idObj={id:this._productsArr.length as number + 1}
             let newProduct=Object.assign(product,idObj)//copia os valores do objecto idObj para product e atribui a new product
@@ -49,5 +54,7 @@ export class ProductService extends BaseService<Product> {
         this._productsArr[prodIndex]=newProduct
         
         this.setProduct(this._productsArr)
+
+        alert('Actualizado!')
     }
 }

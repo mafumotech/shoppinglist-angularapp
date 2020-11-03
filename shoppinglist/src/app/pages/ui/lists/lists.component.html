@@ -11,24 +11,25 @@
         <ng-table [thtf]="tableProprieties()">
 
             <ng-container class="data">
-                <tr *ngFor="let list of tableData()">
+                <tr *ngFor="let list of lists">
                     <td>{{list.id}}</td>
                     <td><strong>{{list.description}}</strong></td>
                     <td>{{list.balance | currency:'MZN':'symbol'}}</td>
-                    <td class="text-center"><span class=" badge badge-success">{{1}}</span></td>
+                    <td class="text-center"><span class=" badge badge-success">{{list.itemQtd}}</span></td>
                     <td> 
-                        <span class="text-success" *ngIf="list.status==0">Completa</span>
-                        <span class="text-danger" *ngIf="list.status==1">Incompleta</span>
+                        <span class="text-success" *ngIf="list.status==0">Finalizada</span>
+                        <span class="text-danger" *ngIf="list.status==1">Não Finalizada</span>
                     </td>
-                    <td>{{list.date | date}}</td>
+                    <td>{{list.date | date:'dd/MM/yyyy HH:mm:ss'}}</td>
                     <td class="text-center">
-                        <ng-button (click)="alertMethod()" [button]="handleButton('add')"></ng-button>&nbsp;
-                        <ng-button (click)="alertMethod()" [button]="handleButton('view')"></ng-button>&nbsp;
-                        <ng-button (click)="alertMethod()" [button]="handleButton('end')"></ng-button>&nbsp;
-                        <ng-button  data-toggle="modal"      data-target="#modal-default"  [button]="handleButton('edit')"></ng-button>&nbsp;
-                        <ng-button (click)="alertMethod()" [button]="handleButton('delete')"></ng-button>&nbsp;
+                        <ng-button title="Editar a Lista" (click)="editObject(list)"  [button]="handleButton('edit')"></ng-button>&nbsp;
+                        <ng-button title="remover a lista" (click)="deleteObject(list)" [button]="handleButton('delete')"></ng-button>&nbsp;
                     </td>
                 </tr>
+
+                <tr *ngIf="!(!!lists) || lists.length==0" class="text-center">
+                  <td [colSpan]="tableProprieties().length">dados não encontrados!</td>
+              </tr>
             </ng-container>
 
         </ng-table>
@@ -36,22 +37,22 @@
     </ng-container>
 </ng-card>
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal-default" *ngIf="(!!lists)">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
+          <h4 class="modal-title">Lista: {{lista}}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>One fine body&hellip;</p>
+          <ng-item-form></ng-item-form>
         </div>
-        <div class="modal-footer justify-content-between">
+        <!-- <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        </div> -->
       </div>
       <!-- /.modal-content -->
     </div>

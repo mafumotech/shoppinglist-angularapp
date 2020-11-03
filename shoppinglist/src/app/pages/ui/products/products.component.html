@@ -16,8 +16,8 @@
                 <td>{{prod.id}}</td>
                 <td><strong>{{prod.name}}</strong></td>
                 <td class="text-center">
-                    <ng-button (click)="alertMethod()" [button]="handleButton('edit')"></ng-button>&nbsp;
-                    <ng-button (click)="removeProd(prod.id)" [button]="handleButton('delete')"></ng-button>&nbsp;
+                    <ng-button (click)="editProduct(prod)" [button]="handleButton('edit')"></ng-button>&nbsp;
+                    <ng-button (click)="deleteObject(prod.id)" [button]="handleButton('delete')"></ng-button>&nbsp;
                 </td>
                </tr>
                <tr *ngIf="!(!!products) || products.length==0" class="text-center">

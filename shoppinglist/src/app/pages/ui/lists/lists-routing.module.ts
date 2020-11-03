@@ -8,6 +8,7 @@ import { ListsComponent } from './lists.component';
     imports: [RouterModule.forChild([
         {path:'',component:ListsComponent},
         {path:'new',component:ListFormComponent},
+        {path:'edit/:id',component:ListFormComponent},
     ])],
     exports: [RouterModule],
 })

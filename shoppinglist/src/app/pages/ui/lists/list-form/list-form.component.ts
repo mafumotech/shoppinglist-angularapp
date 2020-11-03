@@ -11,6 +11,7 @@ import { ListService } from '../shared/services/list.service';
 })
 
 export class ListFormComponent extends BaseFormComponent<List> {
+  list: List;
     
   constructor(protected injector:Injector,protected listServ:ListService){
     super(injector,listServ)
@@ -21,11 +22,41 @@ export class ListFormComponent extends BaseFormComponent<List> {
   protected buildResourceForm(): void {
     this.objectForm=this.formBuilder.group({
         description:[null,[Validators.required,Validators.minLength(3)]],
+        balance:[null],
+        date:[null],
+        items:[null],
+        status:[null],
+        itemQtd:[null],
+        id:[null],
     })
   }
 
   goBack(){
       this.router.navigate(['/lists'])
+  }
+
+  submitForm(){
+    if(this.route.snapshot.url[0].path=='edit'){
+      this.listServ.updateList(Object.assign(this.objectForm.value))
+      this.isLoading=false
+    }else{
+
+      this.listServ.addList(this.objectForm.value)
+      this.objectForm.reset()
+      this.isLoading=false
+    }
+    
+  }
+
+  loadObject(){
+   if(this.route.snapshot.url[0].path=='edit'){
+    let list = this.listServ.getProdById(this.route.snapshot.params['id'])
+    if(list){
+      this.objectForm.patchValue(list)
+        this.list=list
+    }
+        
+   }
   }
 
   handleButton(type?:string):Button{

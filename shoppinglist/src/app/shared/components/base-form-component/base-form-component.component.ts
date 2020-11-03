@@ -34,7 +34,8 @@ export abstract class BaseFormComponent<T extends BaseModel> implements OnInit,A
 
     
     ngOnInit():void {
-        this.setCurrentAction();
+        // this.setCurrentAction();
+
         this.buildResourceForm();
         this.loadObject();
     }
@@ -115,30 +116,30 @@ export abstract class BaseFormComponent<T extends BaseModel> implements OnInit,A
     }
 
     loadObject() {
-        if (this.currentAction == "edit") {
+        // if (this.currentAction == "edit") {
       
-            this.route.paramMap.pipe(
-              switchMap(params => this.baseService.getById(+params.get("id")))
-            )
-            .subscribe(
-              (object) => {
-                this.object = object;
-                this.objectForm.patchValue(object) // binds loaded resource data to resourceForm
-              },
-              () => alert('Ocorreu um erro no servidor, tente mais tarde.')
-            )
-          }
+        //     this.route.paramMap.pipe(
+        //       switchMap(params => this.baseService.getById(+params.get("id")))
+        //     )
+        //     .subscribe(
+        //       (object) => {
+        //         this.object = object;
+        //         this.objectForm.patchValue(object) // binds loaded resource data to resourceForm
+        //       },
+        //       () => alert('Ocorreu um erro no servidor, tente mais tarde.')
+        //     )
+        //   }
     }
 
 
      // PRIVATE METHODS
 
-  protected setCurrentAction() {
-    if(this.route.snapshot.url[0].path == "new")
-      this.currentAction = "new"
-    else
-      this.currentAction = "edit"
-  }
+  // protected setCurrentAction() {
+  //   if(this.route.snapshot.url[0].path == "new")
+  //     this.currentAction = "new"
+  //   else
+  //     this.currentAction = "edit"
+  // }
  
   protected abstract buildResourceForm():void
 

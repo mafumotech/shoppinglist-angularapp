@@ -1,0 +1,24 @@
+<form [formGroup]="objectForm" (ngSubmit)="submitForm()">
+
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                  <input type="text" placeholder="Nome" class="form-control" id="name" formControlName="name">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" placeholder="Quantidade" class="form-control" id="qtd" formControlName="qtd">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" placeholder="Unidade" class="form-control" id="unit" formControlName="unit">
+                </div>
+                <div class="form-group col-md-12">
+                  <input type="text" placeholder="Preço" class="form-control" id="price" formControlName="price">
+                </div>
+            </div>
+    
+            <ng-button [button]="handleButton('save')"></ng-button>
+            
+
+
+  </form>
+  

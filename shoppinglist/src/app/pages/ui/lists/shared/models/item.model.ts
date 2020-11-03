@@ -8,6 +8,11 @@ export class Item{
     price:number
     status:IITtemStatus
 
+    constructor(){
+        this.price=0
+        this.status=IITtemStatus.NOTBUYED
+        this.qtd=0
+    }
     calculatePrice(qtd:number){
         this.price+=qtd
     }

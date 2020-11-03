@@ -1,3 +1,4 @@
+import { switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {  ListService } from './shared/services/list.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ import { IListStatus } from './shared/enums/list.enum';
   templateUrl: './lists.component.html',
   styleUrls: ['./lists.component.css']
 })
-export class ListsComponent extends BaseListComponent<List> implements OnInit {
+export class ListsComponent extends BaseListComponent<List> {
+  lists: List[]=new Array<List>();
 
   constructor(private listServ:ListService,private router:Router){
     super(listServ)
@@ -20,8 +22,18 @@ export class ListsComponent extends BaseListComponent<List> implements OnInit {
 
   ngOnInit(): void {
     this.tableProprieties()
+    this.listServ.lists.subscribe(lists=>this.lists= lists)
   }
 
+  
+  deleteObject(list:List){
+    confirm('Deseja realmente remover este produto?')?this.listServ.removeList(list.id):''
+  }
+
+  editObject(list:List){
+    this.router.navigate(['/lists/edit/',list.id])
+  }
+  
   tableProprieties():string[]{
     return [
       'ID',
@@ -34,16 +46,17 @@ export class ListsComponent extends BaseListComponent<List> implements OnInit {
     ]
   }
 
-  tableData():List[]{
-    return [
-      {id:1,description:'description1',balance:12,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-      {id:2,description:'description2',balance:14,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-      {id:3,description:'description3',balance:16,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-      {id:4,description:'description4',balance:18,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-      {id:5,description:'description5',balance:20,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-      {id:6,description:'description6',balance:22,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
-    ]
-  }
+  // tableData():List[]{
+  //   return this.listServ.lists.pipe(tap(lists=>{return lists})).
+  //   // return [
+  //   //   {id:1,description:'description1',balance:12,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   //   {id:2,description:'description2',balance:14,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   //   {id:3,description:'description3',balance:16,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   //   {id:4,description:'description4',balance:18,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   //   {id:5,description:'description5',balance:20,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   //   {id:6,description:'description6',balance:22,status:IListStatus.UNCOMPLETED,date:new Date()} as List,
+  //   // ]
+  // }
 
   handleButton(type?:string):Button{
 
